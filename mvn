@@ -1,0 +1,12 @@
+DatabaseManager manager = DatabaseManagerFactory.createDatabaseManager(
+    DatabaseManagerFactory.DatabaseType.MYSQL // ou POSTGRESQL ou SQLSERVER
+);
+
+// Connexion
+manager.connect(config.getUrl(), config.getUsername(), config.getPassword());
+
+// Requête SELECT
+List<Map<String, Object>> results = manager.executeQuery("SELECT * FROM ma_table");
+
+// Requête INSERT/UPDATE/DELETE
+int affectedRows = manager.executeUpdate("INSERT INTO ma_table (colonne) VALUES (?)", valeur);

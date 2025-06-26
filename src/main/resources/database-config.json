@@ -1,0 +1,26 @@
+{
+    "type": "mysql",
+
+    "mysql": {
+        "url": "jdbc:mysql://127.0.0.1:3307/API_DB?useSSL=false&allowPublicKeyRetrieval=true",
+        "username": "root",
+        "password": "aya2004",
+        "driverClass": "com.mysql.cj.jdbc.Driver"
+    },
+    
+    "postgresql": {
+        "url": "jdbc:postgresql://localhost:5432/API_DB",
+        "username": "postgres",
+        "password": "aya2004",
+        "driverClass": "org.postgresql.Driver"
+    },
+    
+    "sqlserver": {
+        "url": "jdbc:sqlserver://localhost:1433;databaseName=API_DB;trustServerCertificate=true",
+        "username": "javaAdmin",
+        "password": "aya2004",
+        "driverClass": "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+    }
+}
+
+

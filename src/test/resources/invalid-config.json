@@ -1,0 +1,7 @@
+{
+    "type": "invalid",
+    "url": "jdbc:mysql://localhost:3306/test_db",
+    "username": "test_user",
+    "password": "test_password",
+    "invalid_field": "test"
+} 
