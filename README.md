@@ -1,119 +1,120 @@
+
 # Database Manager API
 
-Une API Java pour la gestion unifiée de l'accès à différents SGBD (MySQL, PostgreSQL, SQL Server).
+A Java API for unified access management to different DBMSs (MySQL, PostgreSQL, SQL Server).
 
-## Fonctionnalités
+## Features
 
-- Connexion unifiée à différents SGBD (MySQL, PostgreSQL, SQL Server)
-- Exécution de requêtes SQL (SELECT, INSERT, UPDATE, DELETE)
-- Gestion des résultats sous forme de List<Map<String, Object>>
-- Configuration via fichier JSON
-- Gestion des erreurs avec messages personnalisés
-- Fermeture automatique des ressources
-- Design modulaire et extensible
+- Unified connection to multiple DBMSs (MySQL, PostgreSQL, SQL Server)
+- Execution of SQL queries (SELECT, INSERT, UPDATE, DELETE)
+- Result management as `List<Map<String, Object>>`
+- Configuration via JSON file
+- Error handling with custom messages
+- Automatic resource cleanup
+- Modular and extensible design
 
-## Prérequis
+## Prerequisites
 
-- Java 8 ou supérieur
-- Maven 3.6 ou supérieur
-- Un des SGBD supportés (MySQL, PostgreSQL, SQL Server)
+- Java 8 or higher
+- Maven 3.6 or higher
+- One of the supported DBMSs (MySQL, PostgreSQL, SQL Server)
 
 ## Installation
 
-1. Clonez le repository :
+1. Clone the repository:
 ```bash
-git clone https://github.com/votre-username/db-manager-api.git
+git clone https://github.com/your-username/db-manager-api.git
 ```
 
-2. Compilez le projet :
+2. Build the project:
 ```bash
 mvn clean install
 ```
 
-3. Le fichier JAR sera généré dans le dossier `target/`
+3. The JAR file will be generated in the `target/` directory.
 
 ## Configuration
 
-Créez un fichier `database-config.json` dans le répertoire `src/main/resources` avec la structure suivante :
+Create a `database-config.json` file in the `src/main/resources` directory with the following structure:
 
 ```json
 {
   "type": "MYSQL",
   "host": "localhost",
   "port": 3306,
-  "database": "votre_base",
-  "username": "votre_utilisateur",
-  "password": "votre_mot_de_passe"
+  "database": "your_database",
+  "username": "your_username",
+  "password": "your_password"
 }
 ```
 
-Types de base de données supportés :
+Supported database types:
 - MYSQL
 - POSTGRESQL
 - SQLSERVER
 
-## Utilisation
+## Usage
 
-### Exemple de connexion
+### Connection Example
 
 ```java
 import ma.ensa.db.config.DatabaseConfig;
 import ma.ensa.db.manager.DatabaseManager;
 import ma.ensa.db.manager.DatabaseManagerFactory;
 
-// Charger la configuration
+// Load configuration
 DatabaseConfig config = DatabaseConfig.loadFromJson("src/main/resources/database-config.json");
 
-// Créer une instance du gestionnaire de base de données
+// Create a database manager instance
 DatabaseManager manager = DatabaseManagerFactory.createDatabaseManager(
     DatabaseManagerFactory.DatabaseType.MYSQL
 );
 
-// Se connecter à la base de données
+// Connect to the database
 manager.connect(config);
 ```
 
-### Exécution de requêtes
+### Executing Queries
 
 ```java
-// Requête SELECT
+// SELECT query
 String selectSql = "SELECT * FROM users WHERE age > 18";
 List<Map<String, Object>> results = manager.executeQuery(selectSql);
 
-// Requête INSERT
+// INSERT query
 String insertSql = "INSERT INTO users (name, email) VALUES (?, ?)";
 int affectedRows = manager.executeUpdate(insertSql, "John Doe", "john@example.com");
 
-// Requête UPDATE
+// UPDATE query
 String updateSql = "UPDATE users SET age = ? WHERE name = ?";
 int updatedRows = manager.executeUpdate(updateSql, 25, "John Doe");
 
-// Requête DELETE
+// DELETE query
 String deleteSql = "DELETE FROM users WHERE name = ?";
 int deletedRows = manager.executeUpdate(deleteSql, "John Doe");
 ```
 
-### Gestion des erreurs
+### Error Handling
 
 ```java
 try {
     manager.executeQuery("SELECT * FROM non_existent_table");
 } catch (DatabaseException e) {
-    System.err.println("Erreur de base de données : " + e.getMessage());
+    System.err.println("Database error: " + e.getMessage());
 }
 ```
 
-## Tests
+## Testing
 
-Le projet inclut des tests unitaires utilisant JUnit et des données de test au format CSV.
+The project includes unit tests using JUnit and test data in CSV format.
 
-Pour exécuter les tests :
+To run the tests:
 
 ```bash
 mvn test
 ```
 
-## Structure du projet
+## Project Structure
 
 ```
 ma/
@@ -134,15 +135,16 @@ ma/
         └── DatabaseManagerExample.java
 ```
 
-## Contribution
+## Contributing
 
-Les contributions sont les bienvenues ! N'hésitez pas à :
-1. Fork le projet
-2. Créer une branche pour votre fonctionnalité
-3. Commiter vos changements
-4. Pousser vers la branche
-5. Ouvrir une Pull Request
+Contributions are welcome! Feel free to:
 
-## Licence
+1. Fork the repository  
+2. Create a feature branch  
+3. Commit your changes  
+4. Push the branch to your fork  
+5. Open a Pull Request  
 
-Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails. 
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
