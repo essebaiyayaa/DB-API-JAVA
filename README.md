@@ -144,7 +144,3 @@ Contributions are welcome! Feel free to:
 3. Commit your changes  
 4. Push the branch to your fork  
 5. Open a Pull Request  
-
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
